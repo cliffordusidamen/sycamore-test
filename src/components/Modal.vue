@@ -29,6 +29,13 @@ const props = defineProps({
         type: String,
         default: 'md',
     },
+
+    handleHide: {
+        type: Function,
+        default: (() => ({})),
+    }
+
+
 })
 const sizeClasses = {
     md: '',
@@ -36,7 +43,6 @@ const sizeClasses = {
     lg: 'modal-lg',
     xl: 'modal-xl',
 }
-const emits = defineEmits(['hide', 'show'])
 const sizeClass = computed(() => sizeClasses[props.size] ?? '')
 
 const modal = ref(null)
@@ -48,22 +54,16 @@ onMounted(() => {
         backdrop: props.backdrop === null ? true : props.backdrop,
     })
 
-    modalElement.addEventListener('hide.bs.modal', () => {
-        emits('hide')
-    })
-
-    modalElement.addEventListener('show.bs.modal', () => {
-        emits('show')
+    modalElement.addEventListener('hidden.bs.modal', () => {
+        props.handleHide()
     })
 })
 onUpdated(() => {
     if(props.show) {
-        modal.value.show()
-        return emits('show')
+        return modal.value.show()
     }
 
     modal.value.hide()
-    emits('hide')
 })
 </script>
 
@@ -93,7 +93,7 @@ onUpdated(() => {
                     <div class="modal-body">
                         <slot></slot>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer d-block text-left">
                         <slot name="footer"></slot>
                     </div>
                 </div>

@@ -4,6 +4,8 @@ import localStoragePlugin from './plugins/local-storage'
 const ACTIONS = {
     ADD_TO_CART: 'ADD_TO_CART',
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
+    SHOW_CART: 'SHOW_CART',
+    HIDE_CART: 'HIDE_CART',
 }
 
 const getters = {
@@ -38,6 +40,14 @@ const mutations = {
     setCartItems(state, { items }) {
         state.cart = new Map(items.map(data => [data.item.id, data]))
     },
+
+    showCart(state) {
+        state.cartVisible = true
+    },
+
+    hideCart(state) {
+        state.cartVisible = false
+    },
 }
 
 const actions = {
@@ -48,12 +58,21 @@ const actions = {
     [ACTIONS.REMOVE_FROM_CART]: ({ commit }, item) => {
         commit('removeCartItem', item)
     },
+
+    [ACTIONS.SHOW_CART]: ({ commit }) => {
+        commit('showCart')
+    },
+
+    [ACTIONS.HIDE_CART]: ({ commit }) => {
+        commit('hideCart')
+    },
 }
 
 const store = createStore({
     state() {
         return {
             cart: new Map(),
+            cartVisible: false,
         }
     },
     getters,

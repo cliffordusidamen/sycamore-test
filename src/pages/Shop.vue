@@ -1,8 +1,8 @@
 <script setup>
 import { onUpdated, onMounted, ref, computed } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 
-import { wares, cart } from '@/products';
+import { wares } from '@/products';
 
 import DefaultLayout from '@/layouts/Default.vue';
 import ItemDetailsModal from '@/components/ItemDetailsModal.vue';
@@ -13,7 +13,8 @@ const showDetailsModal = computed(() => !!displayProduct.value.id)
 const router = useRouter()
 
 const showProductForSlug = () => {
-    const { params } = useRoute();
+    const { params } = router.currentRoute.value;
+    console.log('CHanged', params)
 
     if (!!params?.slug) {
         const product = wares.find(({ slug }) => slug === params.slug);
@@ -26,7 +27,8 @@ const showProductForSlug = () => {
     }
 };
 
-const clearDisplayProduct = () => {
+const goBackToHome = () => {
+    console.log('Back home triggered')
     router.push('/');
 };
 
@@ -52,7 +54,7 @@ onUpdated(() => showProductForSlug())
             <item-details-modal
                 :show="showDetailsModal"
                 :ware="displayProduct"
-                @hide="clearDisplayProduct"
+                @hide-details-modal="goBackToHome"
             />
         </div>
     </default-layout>

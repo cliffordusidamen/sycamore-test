@@ -51,6 +51,5 @@ const wares = [
     },
 ]
 
-const cart = new Map()
 
-export { wares, categories, cart }
+export { wares, categories }
