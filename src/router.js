@@ -16,7 +16,10 @@ const routes = [
         name: 'cart.view',
         component: () => import('./pages/Shop.vue'),
     },
-    // { path: '/about', component: About },
+    {
+        path: '/cart/checkout',
+        component: () => import('./pages/Checkout.vue'),
+    },
 ]
 
 const router = createRouter({

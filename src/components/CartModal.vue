@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 import { useStore } from 'vuex';
 
+import { price, itemTotal, totalCartAmount } from '../utils';
 import Modal from '@/components/Modal.vue';
 import ModalCloseButton from './ModalCloseButton.vue';
 
@@ -35,7 +36,49 @@ const cartItems = computed(() => store.getters.cartItems)
         </div>
 
         <div v-else>
-            <h4>List items in cart here with checkout button</h4>
+            <div class="table-responsive mt-4">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th width="40%">Item</th>
+                            <th class="text-end">Price</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Subtotal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="{item, quantity} in cartItems"
+                            :key="item.id"
+                            class="text-muted"
+                        >
+                            <td>{{item.name}}</td>
+                            <td class="text-end">{{price(item.price)}}</td>
+                            <td class="text-end">{{Number(quantity)}}</td>
+                            <td class="text-end">{{itemTotal(item, quantity).toLocaleString()}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">
+                                TOTAL
+                            </td>
+                            <td class="text-end">
+                                {{totalCartAmount(cartItems)}}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
+
+        <template #footer v-if="cartItems?.length">
+            <div class="px-3 py-2 text-end">
+
+                <router-link to="/cart/checkout" class="btn btn-sm btn-primary text-uppercase">
+                    checkout
+                </router-link>
+            </div>
+        </template>
     </modal>
 </template>

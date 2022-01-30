@@ -1,6 +1,6 @@
 <script setup>
 
-import { computed, onMounted, onUpdated, ref } from 'vue';
+import { computed, onMounted, onUnmounted, onUpdated, ref } from 'vue';
 import { Modal } from 'bootstrap/dist/js/bootstrap.esm.js';
 
 
@@ -65,6 +65,8 @@ onUpdated(() => {
 
     modal.value.hide()
 })
+
+onUnmounted(() => modal.value.dispose())
 </script>
 
 
@@ -90,10 +92,10 @@ onUpdated(() => {
                             aria-label="Close"
                         ></button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body pt-2">
                         <slot></slot>
                     </div>
-                    <div class="modal-footer d-block text-left">
+                    <div class="modal-footer d-block text-left p-0">
                         <slot name="footer"></slot>
                     </div>
                 </div>
