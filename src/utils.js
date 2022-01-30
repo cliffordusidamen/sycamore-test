@@ -1,7 +1,7 @@
 import { categories } from "@/products";
 
 const price = (price) => {
-    return (Number(price) / 100).toLocaleString();
+    return (Number(price) / 100).toFixed(2).toLocaleString();
 };
 
 const getCategoryName = (id) => {

@@ -13,7 +13,8 @@
     "ispin": "^2.0.1",
     "vue": "^3.2.25",
     "vue-router": "4",
-    "vuex": "next"
+    "vuex": "next",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^2.0.0",

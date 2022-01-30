@@ -6,6 +6,7 @@ const ACTIONS = {
     REMOVE_FROM_CART: 'REMOVE_FROM_CART',
     SHOW_CART: 'SHOW_CART',
     HIDE_CART: 'HIDE_CART',
+    CLEAR_CART: 'CLEAR_CART',
 }
 
 const getters = {
@@ -48,6 +49,10 @@ const mutations = {
     hideCart(state) {
         state.cartVisible = false
     },
+
+    clearCart(state) {
+        state.cart = new Map()
+    },
 }
 
 const actions = {
@@ -65,6 +70,10 @@ const actions = {
 
     [ACTIONS.HIDE_CART]: ({ commit }) => {
         commit('hideCart')
+    },
+
+    [ACTIONS.CLEAR_CART]: ({ commit }) => {
+        commit('clearCart')
     },
 }
 

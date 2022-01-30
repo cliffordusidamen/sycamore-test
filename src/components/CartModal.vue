@@ -17,6 +17,7 @@ const props = defineProps({
 defineEmits(['showCartModal', 'hideCartModal'])
 const store = useStore()
 const cartItems = computed(() => store.getters.cartItems)
+const removeFromCart = (item) => store.dispatch(ACTIONS.REMOVE_FROM_CART, {item});
 const updatingCart = ref(false)
 const updateCartItems = () => {
     updatingCart.value = true
@@ -52,6 +53,7 @@ const updateCartItems = () => {
                                 <th class="text-end">Price</th>
                                 <th class="text-end">Qty</th>
                                 <th class="text-end">Subtotal</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +81,15 @@ const updateCartItems = () => {
                                     />
                                 </td>
                                 <td class="text-end">{{ itemTotal(item, quantity).toLocaleString() }}</td>
+                                <td>
+                                    <button
+                                        @click="() => removeFromCart(item)"
+                                        type="button"
+                                        class="btn btn-light btn-circle"
+                                    >
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </td>
                             </tr>
                         </tbody>
                         <tfoot>
@@ -98,6 +109,13 @@ const updateCartItems = () => {
                             :disabled="updatingCart"
                         >
                             <i v-if="!updatingCart" class="bi bi-arrow-repeat me-1"></i>
+                            <div
+                                v-if="updatingCart"
+                                class="spinner-border spinner-border-sm text-white me-2"
+                                role="status"
+                            >
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                             Update cart
                         </button>
 
