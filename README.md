@@ -1,7 +1,19 @@
-# Vue 3 + Vite
+# Sycamore Test
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+### Case study
 
-## Recommended IDE Setup
+Jennifer is an instagram vendor who sells jewelry online. She is trying to expand her business and would like to have a platform that displays her wares. She also wants her customers to purchase her jewelry and even pay for them online.
 
-- [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
+#### Objective
+
+Help Jennifer create a simple website (maximum of 3 pages) that captures her business and allows her customers to interact, purchase and pay for her wares.
+
+#### Technical Requirements
+Make use of VueJS.
+Create an array of objects that hold dummy content for the website. This dummy content would serve as Jennifer’s products.
+A customer should be able to add to cart, checkout and pay for products. You can make use of flutterwave or paystack.
+Authentication of users is optional.
+You can use any free platforms to host your product (e.g netlify, heroku)
+
+
+*Note: Product should be submitted in 72 hours. Send an email with the link to your repo to tech@sycamore.ng*
