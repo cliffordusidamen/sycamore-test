@@ -43,7 +43,7 @@ onUpdated(() => showProductForSlug())
 
 <template>
     <default-layout>
-        <div v-if="!wares.length" class="alert alert-info">
+        <div v-if="!wares.length" class="alert alert-info mb-4">
             <p>No products found.</p>
         </div>
         <div v-else class="mt-3 row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
@@ -57,5 +57,7 @@ onUpdated(() => showProductForSlug())
                 @hide-details-modal="goBackToHome"
             />
         </div>
+
+        <div class="h-100 mb-4"></div>
     </default-layout>
 </template>

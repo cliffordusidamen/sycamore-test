@@ -18,6 +18,11 @@ const showCartModal = () => {
         store.dispatch(ACTIONS.HIDE_CART)
     }
 }
+const showCartLink = computed(() => {
+    const { name } = useRoute();
+    return name != 'cart.checkout'
+})
+
 const router = useRouter()
 
 onMounted(() => showCartModal())
@@ -26,13 +31,14 @@ onUpdated(() => showCartModal())
 </script>
 
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light position-sticky sticky-top">
         <div class="container-fluid">
             <router-link class="navbar-brand" to="/">JStore</router-link>
 
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <router-link
+                        v-if="showCartLink"
                         class="nav-link fs-5"
                         aria-current="page"
                         to="/cart"

@@ -18,8 +18,14 @@ const routes = [
     },
     {
         path: '/cart/checkout',
+        name: 'cart.checkout',
         component: () => import('./pages/Checkout.vue'),
     },
+    {
+        path: '/:pathMatch(.*)*',
+        component: () => import('./pages/NotFound.vue'),
+    },
+
 ]
 
 const router = createRouter({
