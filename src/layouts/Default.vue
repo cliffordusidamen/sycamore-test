@@ -53,7 +53,7 @@ onUpdated(() => showCartModal())
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container mt-4 pt-4">
         <slot></slot>
     </div>
 
